@@ -1,0 +1,84 @@
+body {
+  margin: 0 auto;
+  display: flex;
+  margin-top: 40px;
+}
+
+#app {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.allSquares {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  width: fit-content;
+  margin: 0 auto;
+  gap: 0;
+  border: 5px solid black;
+}
+
+.square {
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  cursor: pointer;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  background-color: white;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.col_4,
+.col_7 {
+  border-left: 5px solid black;
+}
+
+.row_D,
+.row_G {
+  border-top: 5px solid black;
+  margin: 0px;
+}
+
+.all-numbers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0px;
+  width: fit-content;
+  margin: 20px auto;
+}
+
+.numbers {
+  display: flex;
+  width: 80px;
+  height: 80px;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  border: 2px solid black;
+  cursor: pointer;
+}
+.remove-number {
+  display: flex;
+  margin-top: 100px;
+  margin: 0 auto;
+  border: 2px solid black;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  padding: 0px;
+  font-size: 50px;
+  gap: 0px;
+}
+.selected-number {
+  background-color: lightpink;
+}
