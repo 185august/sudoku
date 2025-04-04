@@ -1,7 +1,7 @@
 const modelSudoku = {
     data: {
         board: {},
-        selectedNumber: null
-
+        selectedNumber: null,
+        numbersInputed: [],
     }
 }

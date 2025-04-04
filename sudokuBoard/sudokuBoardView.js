@@ -9,7 +9,7 @@ function sudokuBoardView() {
 }
 
 function rowAndColArray() {
-    for (let row = 1; row <= 9; row++) {
+    /* for (let row = 1; row <= 9; row++) {
         const rowLetter = String.fromCharCode(64 + row)
         for (let col = 1; col <= 9; col++) {
             const cellPosition = rowLetter + col
@@ -21,5 +21,5 @@ function rowAndColArray() {
 
             }
         }
-    }
+    } */
 }
