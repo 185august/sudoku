@@ -3,6 +3,9 @@ const modelSudoku = {
         board: {},
         selectedNumber: null,
         numbersInputed: [],
+        userNumbers: [],
+
+        solver: [],
         sudokuPuzzle: [
             [
                 6, 0, 0, 0, 0, 2, 1, 0, 0,
@@ -27,6 +30,5 @@ const modelSudoku = {
                 0, 0, 0, 0, 8, 0, 0, 7, 9
             ]
         ],
-        userNumbers: []
     }
 }

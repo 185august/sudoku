@@ -9,7 +9,7 @@ function sudokuBoardView() {
 }
 
 function rowAndColArray() {
-    let copyOfPuzzle = [...modelSudoku.data.sudokuPuzzle[1]]
+    let copyOfPuzzle = [...modelSudoku.data.sudokuPuzzle[0]]
     for (let row = 1; row <= 9; row++) {
         const rowLetter = String.fromCharCode(64 + row)
         for (let col = 1; col <= 9; col++) {
@@ -25,7 +25,11 @@ function rowAndColArray() {
                 number: currentNumber
 
             }
-            modelSudoku.data.userNumbers.push(currentNumber);
+
+            modelSudoku.data.solver[cellPosition] = [
+                null
+            ],
+                modelSudoku.data.userNumbers.push(currentNumber);
             copyOfPuzzle.splice(0, 1)
         }
     }
