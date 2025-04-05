@@ -5,20 +5,17 @@ function solver() {
 
     while (madeProgress && iterations < maxIterations) {
         iterations++;
-        for (let row = 1; row <= 9; row++) {
-            const rowLetter = String.fromCharCode(64 + row);
-
-            for (let col = 1; col <= 9; col++) {
-                const squarePos = rowLetter + col;
-                if (modelSudoku.data.board[squarePos].number === null) {
+        for (let row = 0; row < 9; row++) {
+            for (let col = 0; col < 9; col++) {
+                if (modelSudoku.data.board[row][col].number === null) {
                     let candidates = [];
                     for (let n = 1; n <= 9; n++) {
-                        if (checkIfNumberIsValid(rowLetter, col, n, modelSudoku.data.board)) {
+                        if (checkIfNumberIsValid(row, col, n, modelSudoku.data.board)) {
                             candidates.push(n);
                         }
                     }
                     if (candidates.length === 1) {
-                        modelSudoku.data.board[squarePos].number = candidates[0];
+                        modelSudoku.data.board[row][col].number = candidates[0];
                         modelSudoku.data.userNumbers.push(candidates[0]);
                         madeProgress = true;
                     }
@@ -38,11 +35,9 @@ function solver() {
 }
 
 function checkIfSolved() {
-    for (let row = 1; row <= 9; row++) {
-        const rowLetter = String.fromCharCode(64 + row)
-        for (let col = 1; col <= 9; col++) {
-            const squarePos = rowLetter + col;
-            if (modelSudoku.data.board[squarePos].number === null) {
+    for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
+            if (modelSudoku.data.board[row][col].number === null) {
                 return false;
             }
         }
@@ -50,53 +45,52 @@ function checkIfSolved() {
     return true;
 }
 
-function checkIfNumberIsValid(rowLetter, col, n, object) {
+function checkIfNumberIsValid(row, col, n, array) {
     let isNumInvalid = 0;
     const grids = [
-        { rows: ['A', 'B', 'C'], cols: [1, 2, 3], name: 'grid1' },
-        { rows: ['A', 'B', 'C'], cols: [4, 5, 6], name: 'grid2' },
-        { rows: ['A', 'B', 'C'], cols: [7, 8, 9], name: 'grid3' },
-        { rows: ['D', 'E', 'F'], cols: [1, 2, 3], name: 'grid4' },
-        { rows: ['D', 'E', 'F'], cols: [4, 5, 6], name: 'grid5' },
-        { rows: ['D', 'E', 'F'], cols: [7, 8, 9], name: 'grid6' },
-        { rows: ['G', 'H', 'I'], cols: [1, 2, 3], name: 'grid7' },
-        { rows: ['G', 'H', 'I'], cols: [4, 5, 6], name: 'grid8' },
-        { rows: ['G', 'H', 'I'], cols: [7, 8, 9], name: 'grid9' }
+        { rows: [0, 1, 2], cols: [0, 1, 2], name: 'grid1' },
+        { rows: [0, 1, 2], cols: [3, 4, 5], name: 'grid2' },
+        { rows: [0, 1, 2], cols: [6, 7, 8], name: 'grid3' },
+        { rows: [3, 4, 5], cols: [0, 1, 2], name: 'grid4' },
+        { rows: [3, 4, 5], cols: [3, 4, 5], name: 'grid5' },
+        { rows: [3, 4, 5], cols: [6, 7, 8], name: 'grid6' },
+        { rows: [6, 7, 8], cols: [0, 1, 2], name: 'grid7' },
+        { rows: [6, 7, 8], cols: [3, 4, 5], name: 'grid8' },
+        { rows: [6, 7, 8], cols: [6, 7, 8], name: 'grid9' }
     ];
     let currentGrid
     for (const grid of grids)
-        if (grid.rows.includes(rowLetter) && grid.cols.includes(col)) {
-            currentGridgrid = grid.name
+        if (grid.rows.includes(row) && grid.cols.includes(col)) {
+            currentGridgrid = grid.name;
         }
-    for (let y = 1; y <= 9; y++) {
-        const currentCell = rowLetter + y;
+    for (let y = 0; y < 9; y++) {
 
-        if (object[currentCell].number == n) {
+        if (array[row][y].number == n) {
             isNumInvalid++;
-            if (!modelSudoku.data.solver[rowLetter + col].includes(n)) {
-                modelSudoku.data.solver[rowLetter + col] += [n,]
+            if (!modelSudoku.data.solver[row][col].includes(n)) {
+                modelSudoku.data.solver[row][col] += [n,];
             }
         }
 
     }
-    for (let x = 1; x <= 9; x++) {
-        const currentCell = String.fromCharCode(x + 64) + col;
-        if (object[currentCell].number == n) {
+    for (let x = 0; x < 9; x++) {
+
+        if (array[col][x].number == n) {
             isNumInvalid++;
-            if (!modelSudoku.data.solver[rowLetter + col].includes(n)) {
-                modelSudoku.data.solver[rowLetter + col] += [n,]
+            if (!modelSudoku.data.solver[row][col].includes(n)) {
+                modelSudoku.data.solver[row][col] += [n,];
             }
         }
 
     }
 
     for (const grid of grids)
-        if (grid.rows.includes(rowLetter) && grid.cols.includes(col)) {
+        if (grid.rows.includes(row) && grid.cols.includes(col)) {
             for (const r of grid.rows) {
                 for (const c of grid.cols) {
-                    if (object[r + c].number === n) {
-                        if (!modelSudoku.data.solver[rowLetter + col].includes(n)) {
-                            modelSudoku.data.solver[rowLetter + col] += [n,]
+                    if (array[r][c].number === n) {
+                        if (!modelSudoku.data.solver[row][col].includes(n)) {
+                            modelSudoku.data.solver[row][col] += [n,];
                         }
                         isNumInvalid++;
                     }

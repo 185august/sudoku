@@ -1,32 +1,36 @@
 function sudokuBoardView() {
-    let sudokuBoardHtml = `
+    let sudokuBoardHtml = `<div class="container-cells">`
+    for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
+            sudokuBoardHtml += `<div class="cell ${'row_' + row} ${'col_' + col}" onclick="insertNumber('${row}', ${col})">${modelSudoku.data.board[row][col].number ?? ''} </div>`
+        }
+    }
+    sudokuBoardHtml += `</div>`
+    /* let sudokuBoardHtml = `
     <div class="allSquares">
-        ${Object.values(modelSudoku.data.board).map(element =>
-        `<div class="square ${'row_' + element.x} ${'col_' + element.y}" onclick="insertNumber('${element.x}', ${element.y})">${element.number ?? ''} </div>`).join('')}
+        ${modelSudoku.data.board.map((element) =>
+        `<div class="square ${'row'} ${'col'}" onclick="insertNumber('${element.x}', ${element.y})">${element.number ?? ''} </div>`).join('')}
     </div>
-    `
+    ` */
     return sudokuBoardHtml;
 }
 
 function rowAndColArray() {
     let copyOfPuzzle = [...modelSudoku.data.sudokuPuzzle[0]]
-    for (let row = 1; row <= 9; row++) {
-        const rowLetter = String.fromCharCode(64 + row)
-        for (let col = 1; col <= 9; col++) {
-            const cellPosition = rowLetter + col
+    modelSudoku.data.board = Array(9).fill().map(() => Array(9).fill(null))
+    modelSudoku.data.solver = Array(9).fill().map(() => Array(9).fill(null))
+    for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
             let currentNumber = copyOfPuzzle[0]
             if (currentNumber === 0) {
                 currentNumber = null
             }
-            modelSudoku.data.board[cellPosition] =
+            modelSudoku.data.board[row][col] =
             {
-                x: rowLetter,
-                y: col,
                 number: currentNumber
+            };
 
-            }
-
-            modelSudoku.data.solver[cellPosition] = [
+            modelSudoku.data.solver[row][col] = [
                 null
             ],
                 modelSudoku.data.userNumbers.push(currentNumber);

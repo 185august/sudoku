@@ -10,7 +10,7 @@ body {
   flex-direction: column;
 }
 
-.allSquares {
+.container-cells {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(9, 1fr);
@@ -20,7 +20,7 @@ body {
   border: 5px solid black;
 }
 
-.square {
+.cell {
   align-items: center;
   justify-content: center;
   font-size: 30px;
@@ -35,13 +35,13 @@ body {
   padding: 0;
 }
 
-.col_4,
-.col_7 {
+.col_3,
+.col_6 {
   border-left: 5px solid black;
 }
 
-.row_D,
-.row_G {
+.row_3,
+.row_6 {
   border-top: 5px solid black;
   margin: 0px;
 }

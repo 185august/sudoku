@@ -4,8 +4,7 @@ const modelSudoku = {
         selectedNumber: null,
         numbersInputed: [],
         userNumbers: [],
-
-        solver: [],
+        solver: {},
         sudokuPuzzle: [
             [
                 6, 0, 0, 0, 0, 2, 1, 0, 0,
