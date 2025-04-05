@@ -7,3 +7,13 @@ function insertNumber(x, y) {
     }
     updateView();
 }
+
+function callSolver() {
+    solver()
+    if (solver()) {
+        updateView();
+        console.log('found the solution');
+    } else {
+        console.log('no solution');
+    }
+}
