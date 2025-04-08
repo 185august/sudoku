@@ -9,11 +9,16 @@ function insertNumber(x, y) {
 }
 
 function callSolver() {
-    solver()
+    modelSudoku.data.algAttemps = 0;
+
+    const originalBoard = JSON.parse(JSON.stringify(modelSudoku.data.board));
+
     if (solver()) {
         updateView();
         console.log('found the solution');
     } else {
+        modelSudoku.data.board = originalBoard;
+        updateView();
         console.log('no solution');
     }
 }
