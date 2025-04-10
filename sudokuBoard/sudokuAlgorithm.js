@@ -1,3 +1,23 @@
+function scanForCandidates() {
+    for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
+            if (modelSudoku.data.board[row][col].number === null) {
+                const cell = modelSudoku.data.board[row][col]
+                for (let n = 1; n <= 9; n++) {
+                    if (checkIfNumberIsValid(row, col, n, modelSudoku.data.board)) {
+                        if (!cell.candidates.includes(n)) {
+                            cell.candidates.push(n,)
+                        }
+                    }
+                }
+                if (cell.candidates.length != 0 && cell.candidates.length === 1) {
+                    cell.number = cell.candidates
+                    cell.candidates = [];
+                }
+            }
+        }
+    }
+}
 function solver() {
 
     for (let row = 0; row < 9; row++) {
@@ -22,6 +42,7 @@ function solver() {
     }
     return true
 }
+
 function checkIfNumberIsValid(row, col, n, board) {
     for (let y = 0; y < 9; y++) {
         if (board[row][y].number === n) return false;
