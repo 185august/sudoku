@@ -1,9 +1,9 @@
-function insertNumber(x, y) {
+function insertNumber(row, col) {
     if (modelSudoku.data.selectedNumber === undefined) return;
     if (modelSudoku.data.selectedNumber === 0) {
-        modelSudoku.data.board[x][y].number = null;
+        modelSudoku.data.board[row][col].number = null;
     } else {
-        modelSudoku.data.board[x][y].number = modelSudoku.data.selectedNumber;
+        modelSudoku.data.board[row][col].number = modelSudoku.data.selectedNumber;
     }
     updateView();
 }
@@ -12,10 +12,11 @@ function callSolver() {
     modelSudoku.data.algAttemps = 0;
 
     const originalBoard = JSON.parse(JSON.stringify(modelSudoku.data.board));
+    removeNakedSingles();
 
-    if (solver()) {
+    if (improvedSolver()) {
+        console.log('the sudoku is valid');
         updateView();
-        console.log('found the solution');
     } else {
         modelSudoku.data.board = originalBoard;
         updateView();

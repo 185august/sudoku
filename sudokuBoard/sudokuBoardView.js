@@ -11,7 +11,7 @@ function sudokuBoardView() {
 }
 
 function rowAndColArray(index = 6) {
-    let copyOfPuzzle = [...modelSudoku.data.puzzles[index]]
+    /* let copyOfPuzzle = [...modelSudoku.data.puzzles[index]]
 
     for (let row = 0; row < 9; row++) {
         for (let col = 0; col < 9; col++) {
@@ -24,5 +24,5 @@ function rowAndColArray(index = 6) {
 
         }
     }
-    updateView();
+    updateView(); */
 }

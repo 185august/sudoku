@@ -5,7 +5,7 @@ function updateView() {
     `
 }
 function initSudoku() {
-    rowAndColArray();
+    sudokuPuzzleGenerator();
     updateView();
 }
 
