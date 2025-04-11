@@ -20,9 +20,7 @@ function sudokuPuzzleGenerator() {
             }
         }
         return false;
-
     }
-
 }
 
 
