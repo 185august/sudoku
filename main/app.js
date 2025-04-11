@@ -5,6 +5,7 @@ function updateView() {
     `
 }
 function initSudoku() {
+    updateEmptyCellsList();
     sudokuPuzzleGenerator();
     updateView();
 }

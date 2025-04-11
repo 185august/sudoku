@@ -40,12 +40,14 @@ function removeNakedSingles() {
 }
 
 function improvedSolver() {
-
+    const copyBoard = [...modelSudoku.data.board]
     if (modelSudoku.data.emptyCells.length === 0) return true;
 
     const currentCell = modelSudoku.data.emptyCells[0]
     const { row, col, candidates } = currentCell;
-
+    console.log(currentCell)
+    modelSudoku.data.algAttemps++
+    if (modelSudoku.data.algAttemps > 1000000000) return false;
     for (const num of candidates) {
         if (checkIfNumberIsValid(row, col, num, modelSudoku.data.board)) {
             const prevBoard = JSON.parse(JSON.stringify(modelSudoku.data.board));
@@ -56,7 +58,10 @@ function improvedSolver() {
 
 
 
-            if (improvedSolver()) return true;
+            if (improvedSolver()) {
+                modelSudoku.data.board = copyBoard
+                return true;
+            }
 
             modelSudoku.data.board = prevBoard;
             modelSudoku.data.emptyCells = prevEmptyCells;

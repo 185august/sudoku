@@ -3,6 +3,7 @@ const modelSudoku = {
         board: Array(9).fill().map(() => Array(9).fill().map(() => ({ number: null }))),
         selectedNumber: null,
         emptyCells: [],
+        solutions: 0,
         numbersInputed: [],
         userNumbers: [],
         algAttemps: 0,
